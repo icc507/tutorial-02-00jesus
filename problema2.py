@@ -11,5 +11,6 @@ t = input().split()
 inversa = []
 for i in t:
     inversa.insert(0, i)
+
 tupla = tuple(inversa)
 print(tupla)
