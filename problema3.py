@@ -19,9 +19,17 @@ def insertaEnArbolTrinario(arbol, numero):
     elif numero == arbol[0]:
         arbol[2].append(numero)
     elif numero <= arbol[0]:
-        insertaEnArbolTrinario(arbol[1], numero)
+        if arbol[1] == []:
+            arbol[1] = arbolTrinario(numero)
+        else:
+            insertaEnArbolTrinario(arbol[1], numero)
     else:
-        insertaEnArbolTrinario(arbol[3], numero)
+        if arbol[3] == []:
+            arbol[3] = arbolTrinario(numero)
+        else:
+            insertaEnArbolTrinario(arbol[3], numero)
+
+
 arbol = []
 
 teclado = (input().split())
