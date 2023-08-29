@@ -9,5 +9,24 @@
 #         20 30 90 90 8 5 90
 #La salida debe ser
 #         [20, [8, [5, [], [], []], [], []], [], [30, [], [], [90, [], [90, [], [90, [], [], []], []], []]]]
-t = input()
-print(t)
+
+def arbolTrinario(numero):
+    return [numero, [], [], []]
+
+def insertaEnArbolTrinario(arbol, numero):
+    if arbol == []:
+        arbol += arbolTrinario(numero)
+    elif numero == arbol[0]:
+        arbol[2].append(numero)
+    elif numero <= arbol[0]:
+        insertaEnArbolTrinario(arbol[1], numero)
+    else:
+        insertaEnArbolTrinario(arbol[3], numero)
+arbol = []
+
+teclado = (input().split())
+
+for numero in teclado:
+    insertaEnArbolTrinario(arbol, int(numero))
+
+print(arbol)
