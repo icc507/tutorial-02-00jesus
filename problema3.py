@@ -9,38 +9,34 @@
 #         20 30 90 90 8 5 90
 #La salida debe ser
 #         [20, [8, [5, [], [], []], [], []], [], [30, [], [], [90, [], [90, [], [90, [], [], []], []], []]]]
-def insertarEnArbol(arbol, valor):
-	if not arbol:
-		return [valor, [], [], []]
 
-	inicialValor, nodoIzquierda, nodoMitad, nodoDerecha = arbol
+def arbolTrinario(numero):
+    return [numero, [], [], []]
 
-	if valor == inicialValor:
-		nodoMitad.append(valor)
-	elif valor < inicialValor:
-		nodoIzquierda = insertarEnArbol(nodoIzquierda, valor)
-	else:
-		nodoDerecha = insertarEnArbol(nodoDerecha, valor)
+def insertaEnArbolTrinario(arbol, numero):
 
-	return [inicialValor, nodoIzquierda, nodoMitad, nodoDerecha]
-
-
-def arbolTrinario(numeros):
-	root = None
-	for numero in numeros:
-		if root is None:
-			root = [numero, [], [numero], []]
-		else:
-			root = insertarEnArbol(root, numero)
-	return root
+    if arbol == []:
+        arbol += arbolTrinario(numero)
+    elif numero == arbol[0]:
+        arbol[2].append(numero)
+    elif numero <= arbol[0]:
+        if arbol[1] == []:
+            arbol[1] = arbolTrinario(numero)
+        else:
+            insertaEnArbolTrinario(arbol[1], numero)
+    else:
+        if arbol[3] == []:
+            arbol[3] = arbolTrinario(numero)
+        else:
+            insertaEnArbolTrinario(arbol[3], numero)
 
 
-def mostrarArbol(arbol):
-	return arbol
+arbol = []
 
-numeros = list(map(int, input().split()))
-arbol = arbolTrinario(numeros)
+teclado = (input().split())
 
-print(mostrarArbol(arbol))
+for numero in teclado:
+    insertaEnArbolTrinario(arbol, int(numero))
 
+print(arbol)
 
