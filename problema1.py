@@ -9,11 +9,23 @@
 #		  mundo 44
 #La salida debe ser
 #         ('mundo', 44, 20, 90, 'hola', 'mundo', 44)
-t = input().split()
-m = input().split()
-try:
-    tupla1 = (int(t[0]), int(t[1]), t[2])
-    tupla2 = (m[0], int(m[1]))
-    print(tupla2 + tupla1 + tupla2)
-except IndexError:
-    print("Index fuera de rango")
+# Lectura de las dos tuplas
+teclado1 = input().split()
+teclado2 = input().split()
+
+tupla1 = []
+tupla2 = []
+for elemento in teclado1:
+    if elemento.isdigit():
+        tupla1.append(int(elemento))
+    else:
+        tupla1.append(elemento)
+tupla2 = []
+for elemento in teclado2:
+    if elemento.isdigit():
+        tupla2.append(int(elemento))
+    else:
+        tupla2.append(elemento)
+
+salida = tuple(tupla2 + tupla1 + tupla2)
+print(salida)
